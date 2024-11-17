@@ -24,7 +24,7 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
-            'quiz_id' => 2,
+            'quiz_id' => 1,
             'question' => 'What is the purpose of routing in Laravel?',
             'option_a' => 'To connect views and controllers',
             'option_b' => 'To manage databases',

@@ -4,7 +4,7 @@
     <div class="flex min-h-screen">
         {{-- Sidebar --}}
         <aside class="w-64 bg-gray-800 text-white flex flex-col py-6 px-4">
-            <h2 class="text-2xl font-bold mb-6">Admin Panel</h2>
+            <h2 class="text-2xl font-bold mb-6 text-center">Admin Panel</h2>
             <ul class="space-y-4">
                 <li>
                     <a href="{{ route('admin.dashboard') }}"

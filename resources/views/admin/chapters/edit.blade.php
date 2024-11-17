@@ -42,7 +42,7 @@
             {{-- Submit Button --}}
             <div class="flex justify-end">
                 <button type="submit"
-                    class="px-4 py-2 font-semibold text-white bg-green-500 rounded-lg shadow hover:bg-green-600">
+                    class="px-4 py-2 font-semibold text-white bg-green rounded-lg shadow hover:bg-green-600">
                     Update Chapter
                 </button>
                 <a href="{{ route('admin.courses.edit', $course) }}"
@@ -90,7 +90,7 @@
                                     {{ strtoupper($question->correct_option) }}</td>
                                 <td class="px-4 py-2 text-center border border-gray-300">
                                     <a href="{{ route('admin.quizzes.questions.edit', [$chapter->quiz, $question]) }}"
-                                        class="mr-1 text-blue-500 hover:text-blue-700">Edit</a>
+                                        class="mr-1 text-primary hover:text-blue-700">Edit</a>
                                     <form
                                         action="{{ route('admin.quizzes.questions.destroy', [$chapter->quiz, $question]) }}"
                                         method="POST" class="inline-block">
@@ -112,7 +112,7 @@
         @else
             <p class="text-gray-500">No quiz available for this chapter. <a
                     href="{{ route('admin.chapters.quizzes.create', ['chapter' => $chapter->id, 'course' => $course->id]) }}"
-                    class="text-blue-500 hover:text-blue-700">Create a
+                    class="text-primary hover:text-blue-700">Create a
                     Quiz</a></p>
         @endif
 
@@ -147,7 +147,7 @@
                                 <td class="px-4 py-2 border border-gray-300">{{ $article->content }}</td>
                                 <td class="px-4 py-2 text-center border border-gray-300">
                                     <a href="{{ route('admin.chapters.articles.edit', ['course' => $course, 'chapter' => $chapter, 'article' => $article]) }}"
-                                        class="mr-1 text-blue-500 hover:text-blue-700">Edit</a>
+                                        class="mr-1 text-primary ">Edit</a>
                                     <form
                                         action="{{ route('admin.chapters.articles.destroy', ['course' => $course, 'chapter' => $chapter, 'article' => $article]) }}"
                                         method="POST" class="inline-block">
@@ -169,11 +169,8 @@
         @else
             <p class="text-gray-500">No article available for this chapter. <a
                     href="{{ route('admin.chapters.articles.create', ['chapter' => $chapter->id, 'course' => $course->id]) }}"
-                    class="text-blue-500 hover:text-blue-700">Create a
+                    class="text-primary">Create a
                     Article</a></p>
         @endif
-
-
-
     </div>
 @endsection

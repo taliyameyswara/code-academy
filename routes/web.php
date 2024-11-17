@@ -60,8 +60,17 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 // User Routes
 Route::middleware(['auth'])->group(function () {
     Route::prefix('courses')->name('courses.')->group(function () {
+        // Route untuk menampilkan detail course
         Route::get('/{course}', [UserCourseController::class, 'show'])->name('show');
-        Route::get('/{course}/chapter/{chapter}', [UserCourseController::class, 'chapter'])->name('chapter');
-        Route::get('/{course}/chapter/{chapter}/quiz', [UserCourseController::class, 'quiz'])->name('quiz');
+
+        // Route untuk chapter di dalam course
+        Route::prefix('/{course}/chapter/{chapter}')->name('chapter.')->group(function () {
+            Route::get('/', [UserCourseController::class, 'chapter'])->name('show'); // Detail chapter
+            Route::get('/article/{article}', [UserCourseController::class, 'article'])->name('article'); // Artikel dalam chapter
+            Route::get('/quiz', [UserCourseController::class, 'quiz'])->name('quiz'); // Quiz dari chapter
+            Route::post('/quiz', [UserCourseController::class, 'submitTest'])->name('quiz.submit-test');
+            Route::get('/quiz/result', [UserCourseController::class, 'quizResult'])->name('quiz.quiz-result');
+        });
     });
 });
+

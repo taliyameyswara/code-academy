@@ -18,18 +18,17 @@
         <nav class="container flex items-center justify-between px-6 py-4 mx-auto">
             <a href="{{ route('landing') }}" class="text-2xl font-bold text-light">CodeAcademy</a>
             <div class="flex items-center text-lg space-x-2">
-                <a href="{{ route('landing') }}" class="text-white px-4 py-2 font-medium rounded ">Beranda</a>
-                <a href="{{ route('courses') }}" class="text-white px-4 py-2 font-medium rounded ">Kursus</a>
-                <a href="{{ route('help') }}" class="text-white px-4 py-2 font-medium rounded ">Bantuan</a>
+                <a href="{{ route('landing') }}" class="text-white px-4 py-2 font-medium">Beranda</a>
+                <a href="{{ route('courses') }}" class="text-white px-4 py-2 font-medium">Kursus</a>
+                <a href="{{ route('help') }}" class="text-white px-4 py-2 font-medium">Bantuan</a>
                 @auth
+                    <a href="{{ route('profile') }}" class="text-white px-4 py-2 font-medium">Profil</a>
                     @if (auth()->user()->role === 'admin')
-                        <a href="{{ route('admin.courses.index') }}"
-                            class="text-secondary text-lg px-6 p-1 font-semibold rounded-xl bg-white">Dashboard</a>
+                        <a href="{{ route('admin.courses.index') }}" class="text-white px-4 py-2 font-medium">Dashboard</a>
                     @endif
-                    <a href="{{ route('profile') }}" class="text-white px-4 py-2 font-medium rounded ">Profil</a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
-                        <button type="submit" class="text-red-500 text-lg px-6 p-1 font-semibold rounded-xl bg-white">
+                        <button type="submit" class="bg-red-500 text-lg px-5 p-1 font-semibold rounded-xl text-white">
                             Logout
                         </button>
                     </form>

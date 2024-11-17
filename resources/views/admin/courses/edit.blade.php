@@ -58,8 +58,7 @@
 
             {{-- Submit Button --}}
             <div class="flex justify-end">
-                <button type="submit"
-                    class="px-4 py-2 font-semibold text-white bg-green-500 rounded-lg shadow hover:bg-green-600">Update
+                <button type="submit" class="px-4 py-2 font-semibold text-white bg-green rounded-lg shadow">Update
                     Course</button>
                 <a href="{{ route('admin.courses.index') }}" class="p-3 ml-4 text-gray-600 hover:text-gray-800">Cancel</a>
             </div>

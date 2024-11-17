@@ -14,7 +14,7 @@
             @foreach ($courses as $course)
                 <div class="bg-white rounded-xl shadow overflow-hidden">
                     {{-- Gambar --}}
-                    <img src="{{ asset($course->image ? $course->image : 'https://cms-assets.themuse.com/media/lead/01212022-1047259374-coding-classes_scanrail.jpg') }}"
+                    <img src="{{ $course->image ? asset('storage/' . $course->image) : 'https://cms-assets.themuse.com/media/lead/01212022-1047259374-coding-classes_scanrail.jpg' }}"
                         alt="{{ $course->title }}" class="w-full h-40 object-cover">
 
                     {{-- Konten --}}

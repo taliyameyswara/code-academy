@@ -26,10 +26,10 @@
 
         {{-- List of Courses --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($courses as $course)
+            @foreach ($courses->take(3) as $course)
                 <div class="bg-white rounded-xl shadow overflow-hidden">
                     {{-- Gambar --}}
-                    <img src="{{ asset($course->image ? $course->image : 'https://cms-assets.themuse.com/media/lead/01212022-1047259374-coding-classes_scanrail.jpg') }}"
+                    <img src="{{ $course->image ? asset('storage/' . $course->image) : 'https://cms-assets.themuse.com/media/lead/01212022-1047259374-coding-classes_scanrail.jpg' }}"
                         alt="{{ $course->title }}" class="w-full h-40 object-cover">
 
                     {{-- Konten --}}
@@ -53,7 +53,7 @@
 
         </div>
         <div class="mt-10 flex justify-center">
-            <a href="#" class="bg-primary text-white font-bold py-3 px-8 rounded-xl shadow  transition">
+            <a href="{{ route('courses') }}" class="bg-green text-white font-bold py-3 px-8 rounded-xl shadow  transition">
                 Cek Sekarang
             </a>
         </div>

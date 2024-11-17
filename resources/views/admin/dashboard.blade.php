@@ -5,14 +5,6 @@
 @section('admin-content')
     <div class="container mx-auto py-10">
         <h1 class="text-4xl font-bold text-center mb-8">Welcome to Admin Dashboard</h1>
-
-        {{-- Success Message --}}
-        @if (session('success'))
-            <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-6">
-                {{ session('success') }}
-            </div>
-        @endif
-
         {{-- Dashboard Options --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {{-- Manage Courses --}}
