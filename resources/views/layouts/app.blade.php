@@ -14,8 +14,8 @@
 </head>
 
 <body class="bg-light font-poppins">
-    <header class="bg-primary text-white">
-        <nav class="container mx-auto flex justify-between items-center py-4 px-6">
+    <header class="text-white bg-primary">
+        <nav class="container flex items-center justify-between px-6 py-4 mx-auto">
             <a href="{{ route('landing') }}" class="text-2xl font-bold text-light">CodeAcademy</a>
             <div class="flex items-center text-lg space-x-2">
                 <a href="{{ route('landing') }}" class="text-white px-4 py-2 font-medium rounded ">Beranda</a>
@@ -24,31 +24,31 @@
                 @auth
                     @if (auth()->user()->role === 'admin')
                         <a href="{{ route('admin.courses.index') }}"
-                            class="text-secondary text-lg px-6 p-1 font-semibold rounded-xl bg-white">Dashboard</a>
+                            class="text-secondary text-lg px-6 p-1 font-semibold rounded-xl bg-light">Dashboard</a>
                     @endif
                     <a href="{{ route('profile') }}" class="text-white px-4 py-2 font-medium rounded ">Profil</a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
-                        <button type="submit" class="text-red-500 text-lg px-6 p-1 font-semibold rounded-xl bg-white">
+                        <button type="submit" class="text-red-500 text-lg px-6 p-1 font-semibold rounded-xl bg-light">
                             Logout
                         </button>
                     </form>
                 @else
                     <a href="{{ route('login') }}"
-                        class="text-primary text-lg px-6 p-1 font-semibold rounded-xl bg-white">Login</a>
+                        class="text-primary text-lg px-6 p-1 font-semibold rounded-xl bg-light">Login</a>
                 @endauth
             </div>
         </nav>
     </header>
-    {{-- <main class="container mx-auto py-8 px-6"> --}}
+    {{-- <main class="container px-6 py-8 mx-auto"> --}}
     <main class="">
         @yield('content')
     </main>
-    <footer class="bg-light py-10">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-700">
+    <footer class="py-10 bg-light">
+        <div class="container grid grid-cols-1 gap-8 px-6 mx-auto text-gray-700 md:grid-cols-4">
             <!-- About Section -->
             <div>
-                <h4 class="text-lg font-bold text-primary mb-4">CodeAcademy</h4>
+                <h4 class="mb-4 text-lg font-bold text-primary">CodeAcademy</h4>
                 <p class="text-sm leading-relaxed text-primary">
                     CodeAcademy adalah platform belajar coding interaktif yang menawarkan kursus dalam berbagai bahasa
                     pemrograman, membantu pelajar menguasai coding secara praktis dan menyenangkan.
@@ -57,7 +57,7 @@
 
             <!-- Tentang Kami -->
             <div>
-                <h4 class="text-lg font-bold text-primary mb-4">Tentang kami</h4>
+                <h4 class="mb-4 text-lg font-bold text-primary">Tentang kami</h4>
                 <ul class="space-y-2">
                     <li><a href="#" class="text-primary">Perusahaan</a></li>
                     <li><a href="#" class="text-primary">Artikel</a></li>
@@ -67,7 +67,7 @@
 
             <!-- Sosial Media -->
             <div>
-                <h4 class="text-lg font-bold text-primary mb-4">Sosial Media</h4>
+                <h4 class="mb-4 text-lg font-bold text-primary">Sosial Media</h4>
                 <ul class="space-y-2">
                     <li><a href="#" class="text-primary">Instagram: @codeacademy</a></li>
                     <li><a href="#" class="text-primary">Whatsapp: 0896 4347 4489</a></li>
@@ -76,7 +76,7 @@
 
             <!-- Kontak -->
             <div>
-                <h4 class="text-lg font-bold text-primary mb-4">Kontak</h4>
+                <h4 class="mb-4 text-lg font-bold text-primary">Kontak</h4>
                 <ul>
                     <li><a href="mailto:codeacademy@gmail.com" class="text-primary">codeacademy@gmail.com</a>
                     </li>
@@ -84,9 +84,9 @@
             </div>
         </div>
 
-        <div class="mt-8 border-t border-gray-200 pt-6">
-            <div class="container mx-auto flex flex-col md:flex-row justify-center items-center text-gray-500 text-sm">
-                <p class="text-primary mr-5">&copy; 2024</p>
+        <div class="pt-6 mt-8 border-t border-gray-200">
+            <div class="container flex flex-col items-center justify-center mx-auto text-sm text-gray-500 md:flex-row">
+                <p class="mr-5 text-primary">&copy; 2024</p>
                 <div class="space-x-4">
                     <a href="#" class="text-primary">Kebijakan Privasi</a>
                     <a href="#" class="text-primary">Ketentuan Penggunaan</a>
@@ -94,6 +94,9 @@
             </div>
         </div>
     </footer>
+
+    @include('components.toast')
+
 
 </body>
 
