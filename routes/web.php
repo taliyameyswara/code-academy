@@ -58,7 +58,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
 
 // User Routes
-Route::middleware(['auth', 'role:user'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::prefix('courses')->name('courses.')->group(function () {
         Route::get('/{course}', [UserCourseController::class, 'show'])->name('show');
         Route::get('/{course}/chapter/{chapter}', [UserCourseController::class, 'chapter'])->name('chapter');

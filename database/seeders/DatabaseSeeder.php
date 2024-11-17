@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ChapterSeeder::class,
             QuizSeeder::class,
             QuestionSeeder::class,
+            ArticleSeeder::class,
         ]);
     }
 }
