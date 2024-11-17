@@ -20,4 +20,9 @@ class Chapter extends Model
     {
         return $this->hasOne(Quiz::class);
     }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

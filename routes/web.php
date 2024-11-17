@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ChapterController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -44,6 +45,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Quiz Routes
     Route::prefix('courses/{course}/chapters/{chapter}')->name('chapters.')->group(function () {
         Route::resource('quizzes', QuizController::class)->except(['index', 'show']);
+        Route::resource('articles', ArticleController::class)->except(['index', 'show']);
     });
 
     // Question Routes

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Chapter;
+use App\Models\Course;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,7 @@ class QuizController
     /**
      * Show the form for creating a new quiz for the chapter.
      */
-    public function create(Chapter $chapter)
+    public function create(Course $course, Chapter $chapter)
     {
         return view('admin.quizzes.create', compact('chapter'));
     }
@@ -19,7 +20,7 @@ class QuizController
     /**
      * Store a new quiz and its questions for the chapter.
      */
-    public function store(Request $request, Chapter $chapter)
+    public function store(Course $course, Request $request, Chapter $chapter)
     {
         // Validate the request
         $validated = $request->validate([
@@ -32,8 +33,8 @@ class QuizController
             'questions.*.correct_option' => 'required|in:a,b,c,d',
         ]);
 
-        // Create a new quiz for the chapter
-        $quiz = $chapter->quiz()->create([
+        // Check if the chapter already has a quiz, if not, create one
+        $quiz = $chapter->quiz ?: $chapter->quiz()->create([
             'title' => "Quiz for Chapter: {$chapter->title}",
         ]);
 

@@ -23,7 +23,8 @@ class HomeController
     {
         return view('profile');
     }
-    public function courses() {
+    public function courses()
+    {
         $courses = Course::all();
         return view('courses', compact('courses'));
     }

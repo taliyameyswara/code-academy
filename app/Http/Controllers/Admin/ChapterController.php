@@ -17,11 +17,10 @@ class ChapterController
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'nullable|string',
             'video_url' => 'nullable|url',
         ]);
 
-        $course->chapters()->create($request->only('title', 'content', 'video_url'));
+        $course->chapters()->create($request->only('title', 'video_url'));
 
         return redirect()->route('admin.courses.edit', $course)->with('success', 'Chapter added successfully.');
     }
@@ -35,11 +34,10 @@ class ChapterController
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'nullable|string',
             'video_url' => 'nullable|url',
         ]);
 
-        $chapter->update($request->only('title', 'content', 'video_url'));
+        $chapter->update($request->only('title',  'video_url'));
 
         return redirect()->route('admin.courses.edit', $course)->with('success', 'Chapter updated successfully.');
     }
