@@ -1,67 +1,81 @@
 @extends('layouts.app')
 
-@section('title', 'Register')
+@section('title', 'Sign Up')
 
 @section('content')
-    <div class="container py-5">
-        <h1 class="text-center mb-4">Register</h1>
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-md p-8">
+            <h1 class="text-2xl font-bold text-center text-primary mb-6">Sign Up</h1>
 
-        {{-- Success Message --}}
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+            {{-- Success Message --}}
+            @if (session('success'))
+                <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-        {{-- Error Message --}}
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            {{-- Error Message --}}
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-800 p-4 rounded mb-4">
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-        {{-- Register Form --}}
-        <form action="{{ route('register') }}" method="POST" class="mx-auto" style="max-width: 400px;">
-            @csrf
+            {{-- Register Form --}}
+            <form action="{{ route('register') }}" method="POST" class="space-y-5">
+                @csrf
 
-            {{-- Name Input --}}
-            <div class="mb-3">
-                <label for="name" class="form-label">Full Name</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}"
-                    required>
-            </div>
+                {{-- Name Input --}}
+                <div>
+                    <input type="text" name="name" id="name" placeholder="Name"
+                        class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200 text-gray-800"
+                        value="{{ old('name') }}" required>
+                </div>
 
-            {{-- Email Input --}}
-            <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}"
-                    required>
-            </div>
+                {{-- Email Input --}}
+                <div>
+                    <input type="email" name="email" id="email" placeholder="Email"
+                        class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200 text-gray-800"
+                        value="{{ old('email') }}" required>
+                </div>
 
-            {{-- Password Input --}}
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required>
-            </div>
+                {{-- Phone Number Input --}}
+                <div>
+                    <input type="text" name="phone" id="phone" placeholder="Phone Number"
+                        class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200 text-gray-800"
+                        value="{{ old('phone') }}" required>
+                </div>
 
-            {{-- Password Confirmation --}}
-            <div class="mb-3">
-                <label for="password_confirmation" class="form-label">Confirm Password</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"
-                    required>
-            </div>
+                {{-- Password Input --}}
+                <div>
+                    <input type="password" name="password" id="password" placeholder="Password"
+                        class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200 text-gray-800"
+                        required>
+                </div>
 
-            {{-- Submit Button --}}
-            <button type="submit" class="btn btn-primary w-100">Register</button>
-        </form>
+                {{-- Password Confirmation Input --}}
+                <div>
+                    <input type="password" name="password_confirmation" id="password_confirmation"
+                        placeholder="Verify Password"
+                        class="w-full border rounded-lg p-2 focus:outline-none focus:ring focus:ring-blue-200 text-gray-800"
+                        required>
+                </div>
 
-        {{-- Login Link --}}
-        <p class="text-center mt-3">
-            Sudah punya akun? <a href="{{ route('login') }}">Login</a>
-        </p>
+                {{-- Submit Button --}}
+                <button type="submit" class="w-full bg-primary text-white font-semibold py-2 rounded-xl shadow transition">
+                    Sign Up
+                </button>
+            </form>
+
+            {{-- Login Link --}}
+            <p class="text-center mt-4 text-primary">
+                Already have an account? <a href="{{ route('login') }}" class="text-primary font-semibold">Sign
+                    In</a>
+            </p>
+        </div>
     </div>
 @endsection
