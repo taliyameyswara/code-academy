@@ -3,8 +3,8 @@
 @section('title', 'Welcome to CodeAcademy')
 
 @section('content')
-    <section class="min-h-screen bg-light flex justify-center items-center">
-        <div class="bg-white rounded-lg shadow-md w-full max-w-lg p-6">
+    <section class="flex items-center justify-center min-h-screen bg-light">
+        <div class="w-full max-w-lg p-6 bg-white rounded-lg shadow-md">
             <!-- Header -->
             <div class="flex items-center justify-between">
                 <button class="text-gray-500 hover:text-gray-700">
@@ -14,35 +14,55 @@
                     </svg>
 
                 </button>
-                <h2 class="text-2xl font-bold text-gray-700 text-center">My Profile</h2>
+                <h2 class="text-2xl font-bold text-center text-gray-700">My Profile</h2>
                 <div></div> <!-- Placeholder to balance header spacing -->
             </div>
-
-            <!-- Profile Picture -->
-            <div class="flex justify-center my-6">
-                <div class="relative">
-                    <img src="https://via.placeholder.com/100" alt="Profile Picture"
-                        class="w-24 h-24 rounded-full border-2 border-primary">
-                    <button
-                        class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full shadow-md hover:bg-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 20h9" />
-                            <path d="M16.5 3.5L19.5 6.5" />
-                            <path d="M16.5 3.5L4 16v4h4L20.5 7.5l-4-4z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Form -->
-            <form action="#" method="POST">
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
+
+                <!-- Profile Picture -->
+                <div class="flex justify-center my-6">
+                    <div class="relative">
+                        <img id="profilePic"
+                            src="{{ Auth::user()->profile_picture ? 'storage/' . Auth::user()->profile_picture : 'https://via.placeholder.com/100' }}"
+                            alt="Profile Picture" class="w-24 h-24 border-2 rounded-full border-primary">
+                        <input type="file" id="fileInput" name="profile_picture"
+                            class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImage(event)" />
+                        <label for="fileInput"
+                            class="absolute bottom-0 right-0 p-2 text-white rounded-full shadow-md cursor-pointer bg-primary hover:bg-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 20h9" />
+                                <path d="M16.5 3.5L19.5 6.5" />
+                                <path d="M16.5 3.5L4 16v4h4L20.5 7.5l-4-4z" />
+                            </svg>
+                        </label>
+                    </div>
+
+                    <script>
+                        function previewImage(event) {
+                            const file = event.target.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    const img = document.getElementById('profilePic');
+                                    img.src = e.target.result; // Update the image source with the selected file
+                                }
+                                reader.readAsDataURL(file); // Convert file to base64 URL
+                            }
+                        }
+                    </script>
+
+
+                </div>
+
+                <!-- Form -->
                 <!-- Name Input -->
                 <div class="relative mb-4">
-                    <input type="text" name="name" placeholder="Anita Wulandari"
-                        class="w-full border rounded-lg p-3 pl-10 text-gray-800 focus:outline-none focus:ring focus:ring-blue-200">
-                    <span class="absolute left-3 top-3 text-gray-400">
+                    <input type="text" name="name" placeholder="" value="{{ Auth::user()->name }}"
+                        class="w-full p-3 pl-10 text-gray-800 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200">
+                    <span class="absolute text-gray-400 left-3 top-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -53,9 +73,9 @@
 
                 <!-- Email Input -->
                 <div class="relative mb-4">
-                    <input type="email" name="email" placeholder="anitawulandari@gmail.com"
-                        class="w-full border rounded-lg p-3 pl-10 text-gray-800 focus:outline-none focus:ring focus:ring-blue-200">
-                    <span class="absolute left-3 top-3 text-gray-400">
+                    <input type="email" name="email" value="{{ Auth::user()->email }}" readonly
+                        class="w-full p-3 pl-10 text-gray-800 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200">
+                    <span class="absolute text-gray-400 left-3 top-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 4H2v16h20V4zM2 6l10 7L22 6" />
@@ -65,9 +85,10 @@
 
                 <!-- Phone Input -->
                 <div class="relative mb-4">
-                    <input type="text" name="phone" placeholder="081344893214"
-                        class="w-full border rounded-lg p-3 pl-10 text-gray-800 focus:outline-none focus:ring focus:ring-blue-200">
-                    <span class="absolute left-3 top-3 text-gray-400">
+                    <input type="text" name="phone_number" placeholder="081344893214"
+                        value="{{ Auth::user()->phone_number }}"
+                        class="w-full p-3 pl-10 text-gray-800 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200">
+                    <span class="absolute text-gray-400 left-3 top-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -80,8 +101,8 @@
                 <!-- Password Input -->
                 <div class="relative mb-6">
                     <input type="password" name="password" placeholder="••••••••"
-                        class="w-full border rounded-lg p-3 pl-10 text-gray-800 focus:outline-none focus:ring focus:ring-blue-200">
-                    <span class="absolute left-3 top-3 text-gray-400">
+                        class="w-full p-3 pl-10 text-gray-800 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200">
+                    <span class="absolute text-gray-400 left-3 top-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -91,7 +112,7 @@
                 </div>
 
                 <!-- Save Button -->
-                <button type="submit" class="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary">
+                <button type="submit" class="w-full py-3 font-semibold text-white bg-primary rounded-xl hover:bg-primary">
                     Save
                 </button>
             </form>

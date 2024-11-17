@@ -24,6 +24,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/help', [HomeController::class, 'help'])->name('help');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::put('/profile', [HomeController::class, 'updateProfile'])->name('profile.update');
 
 
 // Admin Routes
