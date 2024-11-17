@@ -36,7 +36,7 @@
                     <div class="p-4">
                         <h2 class="text-xl font-semibold text-gray-800">{{ $course->title }}</h2>
                         <p class="text-gray-600 mt-2">{{ $course->description }}</p>
-                        <a href="{{ route('login') }}"
+                        <a href="{{ route('courses.show', $course) }}"
                             class="mt-4 flex items-center ml-auto gap-2 px-3 rounded-lg text-sm bg-primary text-white p-2 w-fit">
                             Lihat Kursus
                             <span>
@@ -94,7 +94,8 @@
 
             <!-- CTA Button -->
             <div class="mt-10">
-                <a href="#" class="bg-primary text-white font-bold py-3 px-8 rounded-xl shadow  transition">
+                <a href="{{ route('courses') }}"
+                    class="bg-primary text-white font-bold py-3 px-8 rounded-xl shadow  transition">
                     Cek Sekarang
                 </a>
             </div>

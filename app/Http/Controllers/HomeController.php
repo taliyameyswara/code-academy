@@ -19,4 +19,8 @@ class HomeController
     public function profile() {
         return view('profile');
     }
+    public function courses() {
+        $courses = Course::all();
+        return view('courses', compact('courses'));
+    }
 }

@@ -23,6 +23,7 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/help', [HomeController::class, 'help'])->name('help');
+Route::get('/courses', [HomeController::class, 'courses'])->name('courses');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 
 
@@ -56,7 +57,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 // User Routes
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::prefix('courses')->name('courses.')->group(function () {
-        Route::get('/', [UserCourseController::class, 'index'])->name('index');
         Route::get('/{course}', [UserCourseController::class, 'show'])->name('show');
         Route::get('/{course}/chapter/{chapter}', [UserCourseController::class, 'chapter'])->name('chapter');
         Route::get('/{course}/chapter/{chapter}/quiz', [UserCourseController::class, 'quiz'])->name('quiz');

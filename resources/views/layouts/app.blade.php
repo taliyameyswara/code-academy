@@ -19,23 +19,23 @@
             <a href="{{ route('landing') }}" class="text-2xl font-bold text-light">CodeAcademy</a>
             <div class="flex items-center text-lg space-x-2">
                 <a href="{{ route('landing') }}" class="text-white px-4 py-2 font-medium rounded ">Beranda</a>
-                <a href="{{ route('login') }}" class="text-white px-4 py-2 font-medium rounded ">Kursus</a>
+                <a href="{{ route('courses') }}" class="text-white px-4 py-2 font-medium rounded ">Kursus</a>
                 <a href="{{ route('help') }}" class="text-white px-4 py-2 font-medium rounded ">Bantuan</a>
-                <a href="{{ route('profile') }}" class="text-white px-4 py-2 font-medium rounded ">Profil</a>
                 @auth
                     @if (auth()->user()->role === 'admin')
                         <a href="{{ route('admin.courses.index') }}"
-                            class="text-secondary text-lg px-6 p-1 font-semibold rounded-xl bg-light">Dashboard</a>
+                            class="text-secondary text-lg px-6 p-1 font-semibold rounded-xl bg-white">Dashboard</a>
                     @endif
+                    <a href="{{ route('profile') }}" class="text-white px-4 py-2 font-medium rounded ">Profil</a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
-                        <button type="submit" class="text-red-500 text-lg px-6 p-1 font-semibold rounded-xl bg-light">
+                        <button type="submit" class="text-red-500 text-lg px-6 p-1 font-semibold rounded-xl bg-white">
                             Logout
                         </button>
                     </form>
                 @else
                     <a href="{{ route('login') }}"
-                        class="text-primary text-lg px-6 p-1 font-semibold rounded-xl bg-light">Login</a>
+                        class="text-primary text-lg px-6 p-1 font-semibold rounded-xl bg-white">Login</a>
                 @endauth
             </div>
         </nav>
