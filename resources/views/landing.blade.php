@@ -91,14 +91,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- CTA Button -->
-            <div class="mt-10">
-                <a href="{{ route('courses') }}"
-                    class="bg-primary text-white font-bold py-3 px-8 rounded-xl shadow  transition">
-                    Cek Sekarang
-                </a>
-            </div>
         </div>
     </section>
 @endsection
