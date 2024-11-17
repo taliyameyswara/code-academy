@@ -7,24 +7,6 @@
         <div class="bg-white w-full max-w-md rounded-2xl shadow-md p-8">
             <h1 class="text-2xl font-bold text-center text-primary mb-6">Sign In</h1>
 
-            {{-- Success Message --}}
-            @if (session('success'))
-                <div class="bg-green-100 text-green-800 p-2 rounded mb-4">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            {{-- Error Message --}}
-            @if ($errors->any())
-                <div class="bg-red-100 text-red-800 p-2 rounded mb-4">
-                    <ul class="list-disc pl-5">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             {{-- Login Form --}}
             <form action="{{ route('login') }}" method="POST" class="space-y-5">
                 @csrf
